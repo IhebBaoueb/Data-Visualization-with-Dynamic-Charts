@@ -1,30 +1,3 @@
-/*import React, { useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-
-const DataTable = ({ rows }) => {
-    const [pageSize, setPageSize] = useState(10);
-
-    const columns = rows.length
-        ? Object.keys(rows[0]).map((key) => ({ field: key, headerName: key, width: 150 }))
-        : [];
-
-    return (
-        <div style={{ height: 600, width: "100%", marginTop: "20px" }}>
-            <DataGrid
-                rows={rows.map((row, index) => ({ id: index, ...row }))}
-                columns={columns}
-                pageSize={pageSize}
-                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                rowsPerPageOptions={[10, 20, 50]}
-                pagination
-            />
-        </div>
-    );
-};
-
-export default DataTable;
-*/
-
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { TextField, Button, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
@@ -144,13 +117,13 @@ const DataTable = ({ rows }) => {
                 </FormControl>
 
                 {/* Bouton pour appliquer le filtre */}
-                <Button variant="contained" color="primary" onClick={handleFilter}>
+                <Button variant="contained" color="warning" onClick={handleFilter}>
                     Filtrer
                 </Button>
 
                 {/* Bouton pour réinitialiser */}
-                <Button variant="outlined" onClick={resetFilter}>
-                    Réinitialiser
+                <Button variant="outlined" color="Dark" SecondaryonClick={resetFilter}>
+                    Reset
                 </Button>
             </div>
 

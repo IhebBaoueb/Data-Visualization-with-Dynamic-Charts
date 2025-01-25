@@ -113,8 +113,8 @@ const Chart = ({ rows }) => {
                 </TextField>
 
                 {/* Bouton pour générer le graphique */}
-                <Button variant="contained" color="primary" onClick={generateChartData}>
-                    Générer le Graphique
+                <Button variant="contained" color="warning" onClick={generateChartData}>
+                    Générer
                 </Button>
             </div>
 
