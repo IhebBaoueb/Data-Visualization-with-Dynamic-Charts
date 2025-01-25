@@ -16,8 +16,10 @@ const App = () => {
     return (
         <div>
             {/* Barre de navigation */}
-            <nav>
-                <h1>CSV Table Viewer with Sorting and Filtering</h1>
+            <nav className="nav">
+                <div className="navbar-title-container">
+                    <h1 className="navbar-title">Data Visualization</h1>
+                </div>
             </nav>
 
             <main className="content-container">
@@ -28,7 +30,7 @@ const App = () => {
                     <>
                         {/* Tableau des données */}
                         <section className="table-section">
-                            <DataTable rows={filteredData} setFilteredRows={setFilteredData} /> 
+                            <DataTable rows={filteredData} setFilteredRows={setFilteredData} />
                         </section>
 
                         {/* Ligne de séparation entre le tableau et le graphique */}
@@ -36,13 +38,11 @@ const App = () => {
 
                         {/* Graphique */}
                         <section className="chart-section">
-                            <Chart rows={filteredData} /> 
+                            <Chart rows={filteredData} />
                         </section>
                     </>
                 )}
             </main>
-            
-            
         </div>
     );
 };

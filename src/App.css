@@ -9,7 +9,7 @@ body {
 
 /* Barre de navigation */
 nav {
-  background-color: #e67811e0;
+  background-color: #d1721a;
   padding: 15px 20px;
   display: flex;
   justify-content: center;
@@ -22,6 +22,24 @@ nav h1 {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+/* Conteneur du titre */
+.navbar-title-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+/* Titre animé */
+.navbar-title {
+  display: inline-block;
+  white-space: nowrap;
+  animation: slide-horizontal 10s linear infinite;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 /* Conteneur principal */
@@ -60,6 +78,71 @@ button {
 button:hover {
   background-color: #e06c0c;
 }
+
+.csv-uploader-container {
+  margin: 40px auto;
+  max-width: 600px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+}
+
+.intro p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.upload-section {
+  margin-top: 20px;
+}
+
+.upload-label {
+  cursor: pointer;
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-button:hover {
+  background-color: #3730a3;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.error-message {
+  font-size: 0.875rem;
+  color: #dc2626;
+  margin-top: 10px;
+}
+
+
+
+/* Animation horizontale */
+@keyframes slide-horizontal {
+  0% {
+      transform: translateX(200%);
+  }
+  100% {
+      transform: translateX(-200%);
+  }
+}
+
 
 /* Animation pour le titre */
 @keyframes fadeIn {
