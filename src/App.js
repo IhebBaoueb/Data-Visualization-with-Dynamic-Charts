@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import CSVUploader from "./components/CSVUploader";
 import DataTable from "./components/DataTable";
 import Chart from "./components/BarChart";
-import "./App.css"; // Import des styles CSS
+import "./App.css"; 
 
 const App = () => {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+    const [selectedRows, setSelectedRows] = useState([]);
 
     const handleDataLoaded = (loadedData) => {
         setData(loadedData);
@@ -15,30 +16,29 @@ const App = () => {
 
     return (
         <div>
-            {/* Barre de navigation */}
             <nav className="nav">
                 <div className="navbar-title-container">
                     <h1 className="navbar-title">Data Visualization</h1>
                 </div>
             </nav>
-
+            
             <main className="content-container">
-                <CSVUploader onDataLoaded={handleDataLoaded} /> {/* Uploader CSV */}
-
-                {/* Si des données sont chargées, afficher le tableau et le graphique */}
+                <CSVUploader onDataLoaded={handleDataLoaded} /> 
+                
                 {data.length > 0 && (
                     <>
-                        {/* Tableau des données */}
                         <section className="table-section">
-                            <DataTable rows={filteredData} setFilteredRows={setFilteredData} />
+                            <DataTable
+                                rows={filteredData}
+                                setFilteredRows={setFilteredData}
+                                onRowSelectionChange={setSelectedRows}
+                            />
                         </section>
 
-                        {/* Ligne de séparation entre le tableau et le graphique */}
                         <hr className="divider" />
 
-                        {/* Graphique */}
                         <section className="chart-section">
-                            <Chart rows={filteredData} />
+                            <Chart rows={selectedRows.length > 0 ? selectedRows : filteredData} />
                         </section>
                     </>
                 )}

@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { TextField, Button, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 
-const DataTable = ({ rows }) => {
+const DataTable = ({ rows ,  setFilteredRows, onRowSelectionChange  }) => {
     const [filterText, setFilterText] = useState("");
     const [filterColumn, setFilterColumn] = useState("");
     const [filterOperator, setFilterOperator] = useState("exact");
-    const [filteredRows, setFilteredRows] = useState(rows);
 
-    // Colonnes dynamiques basées sur les clés du fichier CSV
+    
     const columns = rows.length
         ? Object.keys(rows[0]).map((key) => ({
               field: key,
@@ -18,10 +17,10 @@ const DataTable = ({ rows }) => {
           }))
         : [];
 
-    // Gérer le filtrage des données
+    
     const handleFilter = () => {
         if (!filterColumn || !filterText) {
-            setFilteredRows(rows); // Réinitialiser si aucun filtre n'est défini
+            setFilteredRows(rows); 
             return;
         }
 
@@ -49,7 +48,7 @@ const DataTable = ({ rows }) => {
                 break;
             case "regex":
                 try {
-                    const regex = new RegExp(filterText, "i"); // 'i' pour insensible à la casse
+                    const regex = new RegExp(filterText, "i"); 
                     filteredData = rows.filter((row) => regex.test(row[filterColumn]?.toString()));
                 } catch (e) {
                     alert("Expression régulière invalide");
@@ -63,7 +62,7 @@ const DataTable = ({ rows }) => {
         setFilteredRows(filteredData);
     };
 
-    // Réinitialiser le filtre
+    
     const resetFilter = () => {
         setFilterText("");
         setFilterColumn("");
@@ -73,9 +72,9 @@ const DataTable = ({ rows }) => {
 
     return (
         <div style={{ height: 600, width: "100%", marginTop: "20px" }}>
-            {/* Barre de filtrage */}
+            
             <div style={{ marginBottom: "20px", display: "flex", gap: "10px" }}>
-                {/* Sélection de la colonne */}
+                
                 <FormControl fullWidth>
                     <InputLabel>Colonne à filtrer</InputLabel>
                     <Select
@@ -92,7 +91,7 @@ const DataTable = ({ rows }) => {
                     </Select>
                 </FormControl>
 
-                {/* Texte à rechercher */}
+                
                 <TextField
                     label="Texte à rechercher"
                     value={filterText}
@@ -100,7 +99,7 @@ const DataTable = ({ rows }) => {
                     fullWidth
                 />
 
-                {/* Choix de l'opérateur */}
+                
                 <FormControl fullWidth>
                     <InputLabel>Opérateur</InputLabel>
                     <Select
@@ -116,24 +115,29 @@ const DataTable = ({ rows }) => {
                     </Select>
                 </FormControl>
 
-                {/* Bouton pour appliquer le filtre */}
+                
                 <Button variant="contained" color="warning" onClick={handleFilter}>
                     Filtrer
                 </Button>
 
-                {/* Bouton pour réinitialiser */}
+                
                 <Button variant="outlined" color="Dark" SecondaryonClick={resetFilter}>
                     Reset
                 </Button>
             </div>
 
-            {/* Table dynamique avec tri intégré */}
+            
             <DataGrid
-                rows={filteredRows.map((row, index) => ({ id: index, ...row }))}
+                rows={rows.map((row, index) => ({ id: index, ...row }))}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[10, 20, 50]}
                 pagination
+                checkboxSelection
+                onRowSelectionModelChange={(ids) => {
+                    const selectedRows = ids.map((id) => rows[id]);
+                    onRowSelectionChange(selectedRows); // Mettre à jour les lignes sélectionnées
+                }}
             />
         </div>
     );

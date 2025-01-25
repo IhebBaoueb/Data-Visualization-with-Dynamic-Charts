@@ -18,7 +18,7 @@ const CSVUploader = ({ onDataLoaded }) => {
             setError("");
             setFileName(file.name);
 
-            // Parse le fichier CSV
+            
             Papa.parse(file, {
                 header: true,
                 skipEmptyLines: true,
@@ -31,7 +31,6 @@ const CSVUploader = ({ onDataLoaded }) => {
 
     return (
         <div className="csv-uploader-container">
-            {/* Titre et introduction */}
             <div className="intro">
                 <h2 className="text-xl font-bold text-center mb-4">
                     Welcome to Data Visualization
@@ -41,7 +40,7 @@ const CSVUploader = ({ onDataLoaded }) => {
                 </p>
             </div>
 
-            {/* Bouton de chargement */}
+            
             <div className="upload-section">
                 <input
                     id="file-upload"
@@ -52,14 +51,14 @@ const CSVUploader = ({ onDataLoaded }) => {
                 />
             </div>
 
-            {/* Nom du fichier importé */}
+            
             {fileName && (
                 <p className="text-center mt-4 text-green-600">
                     File uploaded: <span className="font-semibold">{fileName}</span>
                 </p>
             )}
 
-            {/* Message d'erreur */}
+            
             {error && (
                 <div className="error-message mt-4 text-red-500 flex items-center justify-center">
                     <AlertCircle className="mr-2" />

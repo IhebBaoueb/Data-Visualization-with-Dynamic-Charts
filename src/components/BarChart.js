@@ -5,10 +5,10 @@ import { TextField, Button, MenuItem } from "@mui/material";
 const Chart = ({ rows }) => {
     const [xAxisColumn, setXAxisColumn] = useState("");
     const [yAxisColumn, setYAxisColumn] = useState("");
-    const [measure, setMeasure] = useState("sum"); // Mesure par défaut
+    const [measure, setMeasure] = useState("sum"); 
     const [chartData, setChartData] = useState(null);
 
-    // Générer les données du graphique
+    
     const generateChartData = () => {
         if (!xAxisColumn || !yAxisColumn) {
             alert("Veuillez sélectionner les colonnes pour X et Y !");
@@ -68,7 +68,7 @@ const Chart = ({ rows }) => {
         <div style={{ marginTop: "20px" }}>
             <h2>Graphique Dynamique</h2>
             <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-                {/* Sélection de l'axe des X */}
+                
                 <TextField
                     label="Axe des X"
                     value={xAxisColumn}
@@ -83,7 +83,7 @@ const Chart = ({ rows }) => {
                     ))}
                 </TextField>
 
-                {/* Sélection de l'axe des Y */}
+                
                 <TextField
                     label="Axe des Y"
                     value={yAxisColumn}
@@ -98,7 +98,7 @@ const Chart = ({ rows }) => {
                     ))}
                 </TextField>
 
-                {/* Sélection de la mesure */}
+                
                 <TextField
                     label="Mesure"
                     value={measure}
@@ -112,13 +112,13 @@ const Chart = ({ rows }) => {
                     <MenuItem value="countDistinct">Nombre distinct (Count Distinct)</MenuItem>
                 </TextField>
 
-                {/* Bouton pour générer le graphique */}
+                
                 <Button variant="contained" color="warning" onClick={generateChartData}>
                     Générer
                 </Button>
             </div>
 
-            {/* Afficher le graphique */}
+            
             {chartData && <ReactECharts option={chartData} />}
         </div>
     );
